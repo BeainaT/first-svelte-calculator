@@ -5,41 +5,52 @@
   let total = 0;
 
   function getInput(value) {
-    inputNumber += value.toString();
-    total = eval(inputNumber);
+    if(isNaN(value)) {
+      return inputNumber += value;
+    } else {
+      inputNumber += value.toString();
+    }
+    return total = eval(inputNumber);
   }  
   function clear() {
     total = 0;
     inputNumber = '';
   }
-  const calc = () => total ? eval(inputNumber) : '';
-
+  function calc() {
+    if(total) {
+      total = eval(inputNumber);
+      return inputNumber = total.toString();
+    }
+  }
 </script>
 
 <!-- <main> -->
   <h1>Calculator</h1>
     <Display>
       <div>{inputNumber}</div>
-      {#if total !== 0 && total !== parseInt(inputNumber)}
+      {#if total !== 0 && total !== parseFloat(inputNumber)}
         <div class="big">{total}</div>        
       {/if}
     </Display>
-    <button on:click={()=>getInput(1)}>1</button>
-    <button on:click={()=>getInput(2)}>2</button>
-    <button on:click={()=>getInput(3)}>3</button>
-    <button on:click={()=>getInput(4)}>4</button>
-    <button on:click={()=>getInput(5)}>5</button>
-    <button on:click={()=>getInput(6)}>6</button>
-    <button on:click={()=>getInput(7)}>7</button>
-    <button on:click={()=>getInput(8)}>8</button>
-    <button on:click={()=>getInput(9)}>9</button>
-    <button on:click={()=>getInput(0)}>0</button>
-    <button on:click={()=>getInput('+')}>+</button>
-    <button on:click={()=>getInput('-')}>-</button>
-    <button on:click={()=>getInput('/')}>/</button>
-    <button on:click={()=>getInput('*')}>*</button>
-    <button on:click={calc}>=</button>
-    <button on:click={clear}>C</button>
+    <div class="keypad">
+      <button on:click={()=>getInput(1)}>1</button>
+      <button on:click={()=>getInput(2)}>2</button>
+      <button on:click={()=>getInput(3)}>3</button>
+      <button on:click={()=>getInput(4)}>4</button>
+      <button on:click={()=>getInput(5)}>5</button>
+      <button on:click={()=>getInput(6)}>6</button>
+      <button on:click={()=>getInput(7)}>7</button>
+      <button on:click={()=>getInput(8)}>8</button>
+      <button on:click={()=>getInput(9)}>9</button>
+      <button on:click={()=>getInput(0)}>0</button>
+      <button on:click={()=>getInput('+')}>+</button>
+      <button on:click={()=>getInput('-')}>-</button>
+      <button on:click={()=>getInput('/')}>/</button>
+      <button on:click={()=>getInput('*')}>*</button>
+      <button on:click={()=>getInput('.')}>,</button>
+      <button on:click={calc}>=</button>
+      <button on:click={clear}>C</button>
+    </div>
 <!-- </main> -->
 
 <style>
