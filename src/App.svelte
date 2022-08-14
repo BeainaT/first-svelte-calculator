@@ -3,6 +3,7 @@
 
   let inputNumber = '';
   let total = 0;
+  let operators = ['+', '-', '*', '/'];
 
   function getInput(value) {
     if(isNaN(value)) {
@@ -16,11 +17,28 @@
     total = 0;
     inputNumber = '';
   }
+  function undo() {
+    if(inputNumber.length > 1) {
+      inputNumber = inputNumber.slice(0, inputNumber.length -1);
+      let inputLast = inputNumber.charAt(inputNumber.length -1);
+      if(inputLast == operators.find((i)=> i == inputLast)) {
+        let removeInput = inputNumber.slice(0, inputNumber.length -1);
+        total = eval(removeInput);
+      } else {
+        total = eval(inputNumber)
+      }
+    } else {
+      inputNumber = '';
+      total = 0;
+    }
+  }
+
   function calc() {
     if(total) {
-      total = eval(inputNumber);
-      return inputNumber = total.toString();
+      total % 1 !== 0 ? total = eval(inputNumber).toFixed(4) : total = eval(inputNumber);
+      inputNumber = total.toString();
     }
+    return total = 0;
   }
 </script>
 
@@ -48,6 +66,7 @@
       <button on:click={()=>getInput('/')}>/</button>
       <button on:click={()=>getInput('*')}>*</button>
       <button on:click={()=>getInput('.')}>,</button>
+      <button on:click={undo}>ret</button>
       <button on:click={calc}>=</button>
       <button on:click={clear}>C</button>
     </div>
@@ -59,5 +78,9 @@
   }
   .big {
     font-size: 40px;
+  }
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 </style>
