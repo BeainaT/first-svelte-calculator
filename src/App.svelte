@@ -32,10 +32,16 @@
       total = 0;
     }
   }
-
+  function percentage() {
+    total = total / 100;
+    inputNumber = total.toString();
+  }
+  function exp() {
+    return inputNumber = total.toExponential();
+  }
   function calc() {
     if(total) {
-      total % 1 !== 0 ? total = eval(inputNumber).toFixed(4) : total = eval(inputNumber);
+      (total % 1 !== 0 || total < 1e-4) ? total = eval(inputNumber).toFixed(4) : total = eval(inputNumber);
       inputNumber = total.toString();
     }
     return total = 0;
@@ -66,7 +72,10 @@
       <button on:click={()=>getInput('/')}>/</button>
       <button on:click={()=>getInput('*')}>*</button>
       <button on:click={()=>getInput('.')}>,</button>
-      <button on:click={undo}>ret</button>
+      <button on:click={percentage}>%</button>
+      <button on:click={exp}>e</button>
+
+      <button on:click={undo}>&#8656;</button>
       <button on:click={calc}>=</button>
       <button on:click={clear}>C</button>
     </div>
