@@ -10,6 +10,9 @@
       return inputNumber += value;
     } else {
       inputNumber += value.toString();
+      if(inputNumber.startsWith('0') && isNaN(parseFloat(inputNumber.charAt(1))) == false) {
+        inputNumber = parseInt(inputNumber, 10).toString();
+      }
     }
     return total = eval(inputNumber);
   }  
@@ -41,55 +44,68 @@
   }
   function calc() {
     if(total) {
-      (total % 1 !== 0 || total < 1e-4) ? total = eval(inputNumber).toFixed(4) : total = eval(inputNumber);
+      (total % 1 !== 0) ? total = eval(inputNumber).toFixed(2) : total = eval(inputNumber);
       inputNumber = total.toString();
     }
     return total = 0;
   }
 </script>
 
-<!-- <main> -->
-  <h1>Calculator</h1>
-    <Display>
-      <div>{inputNumber}</div>
-      {#if total !== 0 && total !== parseFloat(inputNumber)}
-        <div class="big">{total}</div>        
-      {/if}
-    </Display>
+<h1>Calculator</h1>
+<main>
+    <Display input={inputNumber} result={total}/>
     <div class="keypad">
-      <button on:click={()=>getInput(1)}>1</button>
-      <button on:click={()=>getInput(2)}>2</button>
-      <button on:click={()=>getInput(3)}>3</button>
-      <button on:click={()=>getInput(4)}>4</button>
-      <button on:click={()=>getInput(5)}>5</button>
-      <button on:click={()=>getInput(6)}>6</button>
-      <button on:click={()=>getInput(7)}>7</button>
-      <button on:click={()=>getInput(8)}>8</button>
-      <button on:click={()=>getInput(9)}>9</button>
-      <button on:click={()=>getInput(0)}>0</button>
-      <button on:click={()=>getInput('+')}>+</button>
-      <button on:click={()=>getInput('-')}>-</button>
-      <button on:click={()=>getInput('/')}>/</button>
-      <button on:click={()=>getInput('*')}>*</button>
-      <button on:click={()=>getInput('.')}>,</button>
-      <button on:click={percentage}>%</button>
-      <button on:click={exp}>e</button>
-
-      <button on:click={undo}>&#8656;</button>
-      <button on:click={calc}>=</button>
-      <button on:click={clear}>C</button>
+      <div class="keypad__body">
+        <button on:click={()=>getInput(1)}>1</button>
+        <button on:click={()=>getInput(2)}>2</button>
+        <button on:click={()=>getInput(3)}>3</button>
+        <button on:click={()=>getInput(4)}>4</button>
+        <button on:click={()=>getInput(5)}>5</button>
+        <button on:click={()=>getInput(6)}>6</button>
+        <button on:click={()=>getInput(7)}>7</button>
+        <button on:click={()=>getInput(8)}>8</button>
+        <button on:click={()=>getInput(9)}>9</button>
+        <button on:click={()=>getInput('.')}>,</button>
+        <button on:click={()=>getInput(0)}>0</button>
+        <button on:click={clear}>C</button>
+        <button on:click={percentage}>%</button>
+        <button on:click={exp}>e</button>
+        <button on:click={undo}>&#8656;</button>
+      </div>
+      <div class="keypad__op">
+        <button on:click={()=>getInput('+')}>+</button>
+        <button on:click={()=>getInput('-')}>-</button>
+        <button on:click={()=>getInput('/')}>/</button>
+        <button on:click={()=>getInput('*')}>*</button>  
+        <button on:click={calc}>=</button>
+      </div>
     </div>
-<!-- </main> -->
+</main>
 
 <style>
-  button {
-    border: 2px solid darkblue;
+  main {
+    background-color: rgb(48, 2, 90);
+    padding: 20px;
   }
-  .big {
-    font-size: 40px;
+  button {
+    border: 2px solid #fff;
+    font-weight: 900;
+    background-color: rgb(5, 5, 75);
+    color: #fff;
   }
   .keypad {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "n o";
+    font-weight: bold;
+    /* grid-template-columns: repeat(3, 1fr); */
+  }
+  .keypad__body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-area: n;
+  }
+  .keypad__op {
+    display: grid;
+    grid-template-columns: 1;
   }
 </style>
