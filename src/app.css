@@ -16,6 +16,19 @@
   --border-calc-light: rgb(169, 167, 170);
   --calc-dark: rgb(41, 40, 40);
   --border-out: lightgrey;
+  --text-dark: #808080;
+  --bg-color-dark: #414040;
+
+  /*spaces*/
+  --xxs: .3125rem;
+  --xs: .5rem;
+  --s: .625rem;
+  --sm: .9375rem;
+  --m: 1.25rem;
+  --ml: 1.5625rem;
+  --lg: 1.875rem;
+  --xl: 3.125rem;
+  --xxl: 6.25rem;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,31 +42,23 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  /* min-height: 100vh; */
-  color: var(--color-light);
+  color: var(--calc-dark);
   background-color: var(--bg-color-light);
 }
 main {
   display: flex;
-  justify-content: center;
-  margin-top: 30px;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: var(--lg);
+  max-width: 1000px;
+  margin: 3rem auto;
 }
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-/* .card {
-  padding: 2em;
-} */
-
 #app {
   width: 100%;
 }
 
 button {
-  border-radius: 8px;
+  border-radius: var(--xs);
   border: 1px solid var(--border-light);
   padding: 0.6em 1.2em;
   font-size: 1.2em;
@@ -78,8 +83,8 @@ button:active {
   font-family: 'Orbitron', sans-serif;
 }
 .dark {
-  color: grey;
-  background-color: #414040;
+  color: var(--text-dark);
+  background-color: var(--bg-color-dark);
   --display-light : rgba(66, 150, 171, 0.699);
   --border-light: var(--color-dark);
   --calc-color-light: var(--calc-dark);

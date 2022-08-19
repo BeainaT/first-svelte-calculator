@@ -11,22 +11,22 @@
 
 <style>
     .display {
-        width: 250px;
+        width: 15.625rem;
         overflow-wrap: break-word;
-        min-height: 100px;
-        margin: 10px 0;
+        min-height: 6.25rem;
+        margin: var(--s) 0;
         border: inset;
         border-right: 1.5px solid grey;
         border-bottom: 1.5px solid grey;
         text-align: right;
-        font-size: 25px;
-        padding: 20px;
+        font-size: var(--ml);
+        padding: var(--m);
         border-radius: 10px;
         background-color: var(--display-light);
         color: var(--bg-color-light);
         font-weight: 900;
     }
     .big {
-        font-size: 32px;
+        font-size: 3rem;
     }
 </style>

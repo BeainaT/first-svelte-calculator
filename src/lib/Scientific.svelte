@@ -19,13 +19,14 @@ const factorial = n => n != 1 ? (n * factorial(n-1)) : 1;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-row: 1;
-        gap: 5px;
-        width: 200px;
+        gap: var(--xs);
+        width: 12.5rem;
         background-color: var(--main-color-light);
     }
     button {
         background-color: var(--border-light);
         border-color: var(--bg-color-light);
         color: var(--bg-color-light);
+        box-shadow: 2px 2px 2px #fff;
     }
 </style>
