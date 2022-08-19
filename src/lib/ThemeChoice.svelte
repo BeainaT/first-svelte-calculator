@@ -1,10 +1,10 @@
 <script>
     export let theme = true;
     export let toggle = () => theme = !theme;
-    export let trys = () => {};
+    export let appTheme = () => {};
 </script>
 <span class="{theme ? 'hidden' : ''} toggle_theme">Preferisco calcolare al buio</span>
-    <button on:click={toggle} on:click={trys}>
+    <button on:click={toggle} on:click={appTheme}>
       {#if theme}
         &#9788;
       {:else}

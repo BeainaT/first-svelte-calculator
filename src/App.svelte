@@ -63,14 +63,16 @@
   let toggle = () => (change = !change);
   let turns = () => (rotate = !rotate);
 
-  let scientificOp = (value) =>
-    value != Math.PI ? (total = value) : (inputNumber += value);
+  function scientificOp(value) {
+    total = value;
+    return inputNumber = total.toString()
+  }
 
   let toggleTheme = () => (theme = !theme);
 </script>
 
 <div class="{!theme ? 'dark' : ''} app_container">
-  <ThemeChoice trys={toggleTheme} />
+  <ThemeChoice appTheme={toggleTheme} />
   <main>
     <div class="{rotate ? 'rotate' : ''} calculator">
       <Display input={inputNumber} result={total} />
